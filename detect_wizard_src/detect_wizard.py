@@ -27,6 +27,7 @@ from detect_wizard_src.TarExaminer import is_tar_docker
 # Constants
 advisor_version = "1.0-Beta"
 detect_version = "6.5.0"
+detect_url = "https://detect.synopsys.com/detect8.sh" # Fix change in URL by Synopsys
 
 srcext_list = ['.R', '.actionscript', '.ada', '.adb', '.ads', '.aidl', '.as', '.asm', '.asp', \
                '.aspx', '.awk', '.bas', '.bat', '.bms', '.c', '.c++', '.cbl', '.cc', '.cfc', '.cfm', '.cgi', '.cls', \
@@ -408,11 +409,11 @@ cli_msgs_dict = {
     'sense_log': {}
 }
 
-cli_msgs_dict['detect_linux'] = " bash <(curl -s -L https://detect.synopsys.com/detect.sh)\n"
+cli_msgs_dict['detect_linux'] = f" bash <(curl -s -L {detect_url})\n"
 cli_msgs_dict[
     'detect_linux_proxy'] = " (You may need to configure a proxy to download and run the Detect script as follows)\n" + \
                             " export DETECT_CURL_OPTS='--proxy http://USER:PASSWORD@PROXYHOST:PROXYPORT'\n" + \
-                            " bash <(curl -s -L ${DETECT_CURL_OPTS} https://detect.synopsys.com/detect.sh)\n" + \
+                            " bash <(curl -s -L ${DETECT_CURL_OPTS} " + detect_url + ")\n" + \
                             "--blackduck.proxy.host=PROXYHOST\n" + \
                             "--blackduck.proxy.port=PROXYPORT\n" + \
                             "--blackduck.proxy.username=USERNAME\n" + \
